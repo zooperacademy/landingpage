@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>ZOOPER ACADEMY - Pinned Tab</title>
+  <g fill="#000" fill-rule="nonzero">
+    <circle cx="32" cy="32" r="30" fill="#000"/>
+    <path d="M32 10l4.472 9.066 10.01 1.455-7.241 7.06 1.709 9.96L32 33.79l-8.95 4.75 1.709-9.96-7.241-7.06 10.01-1.455L32 10z" fill="#fff"/>
+  </g>
+</svg>

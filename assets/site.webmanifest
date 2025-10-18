@@ -1,0 +1,13 @@
+{
+  "name": "TOEFL HACK by ZOOPER ACADEMY",
+  "short_name": "TOEFL HACK",
+  "description": "Naik skor TOEFL lebih cepat bareng ZOOPER ACADEMY.",
+  "icons": [
+    { "src": "favicon/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "favicon/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#155EAB",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "."
+}
