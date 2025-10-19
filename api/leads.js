@@ -7,9 +7,19 @@ const { sql } = require('@vercel/postgres');
 module.exports = async (req, res) => {
   // CORS (allow same-site usage; adjust origin if needed)
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(204).end();
+  if (req.method === 'GET') {
+    try {
+      const url = new URL(req.url, `http://${req.headers.host}`);
+      const limit = Math.max(1, Math.min(200, parseInt(url.searchParams.get('limit') || '50', 10)));
+      const rows = await sql`SELECT id, name, email, phone, city, purpose, created_at FROM leads ORDER BY created_at DESC LIMIT ${limit};`;
+      return res.status(200).json({ ok: true, leads: rows.rows });
+    } catch (err) {
+      return res.status(500).json({ error: 'DB error', details: err?.message || String(err) });
+    }
+  }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
 
   try {
