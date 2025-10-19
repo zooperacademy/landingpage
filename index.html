@@ -81,7 +81,7 @@
           <a href="#faq" class="hover:text-brand transition">FAQ</a>
         </nav>
         <div class="hidden md:flex items-center gap-3">
-          <a href="#daftar" class="px-4 py-2 rounded-lg border border-slate-300 hover:border-brand/40 hover:text-brand transition">Coba Gratis</a>
+          <a href="#" id="tanyaDuluNav" class="px-4 py-2 rounded-lg border border-slate-300 hover:border-brand/40 hover:text-brand transition">Tanya Dulu</a>
           <a href="#daftar" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white shadow-soft transition">Daftar Sekarang</a>
         </div>
         <button id="menuBtn" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-slate-300 text-slate-700">
@@ -149,7 +149,15 @@
                 <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-brand"></span> Keyword yang wajib ditangkap supaya ngga ke-distract</li>
                 <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-brand"></span> Teknik skip jebakan pilihan mirip</li>
               </ul>
-              <div class="mt-2 h-40 rounded-lg bg-gradient-to-br from-brand/10 to-accent/10 border border-slate-200 flex items-center justify-center text-slate-400">Video Demo</div>
+              <div class="mt-2 rounded-xl border border-slate-200 shadow-soft overflow-hidden relative">
+                <img
+                  src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=1600&auto=format&fit=crop"
+                  alt="Belajar online bersama mentor — sesi kelas TOEFL HACK"
+                  class="w-full h-44 md:h-56 lg:h-64 object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/10 via-transparent to-brand/10"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -173,26 +181,76 @@
       </div>
 
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+        <!-- Strategi Anti Ribet -->
         <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
           <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 7l6 5-6 5V7"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 7l6 5-6 5V7"/>
+            </svg>
           </div>
-          <h3 class="mt-4 font-semibold text-lg">Strategi Anti Ribet</h3>
-          <p class="mt-2 text-slate-600">Langsung ke inti: pola soal paling sering muncul + cara jawab tercepat.</p>
+          <h3 class="mt-4 font-semibold text-lg">Langsung ke Inti</h3>
+          <p class="mt-2 text-slate-600">Ngga muter-muter. Kita kasih yang paling kepake biar kamu cepat ngegas.</p>
         </div>
-        <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
-          <div class="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 6v12m6-6H6"/></svg>
-          </div>
-          <h3 class="mt-4 font-semibold text-lg">Naik Skor Terukur</h3>
-          <p class="mt-2 text-slate-600">Progress kamu dipantau. Ada target mingguan biar nggak kebanyakan santai.</p>
-        </div>
+
+        <!-- Naik Skor Terukur -->
         <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
           <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8"/></svg>
           </div>
-          <h3 class="mt-4 font-semibold text-lg">Materi Nempel</h3>
-          <p class="mt-2 text-slate-600">Contoh-contoh relevan + latihan micro-step biar gampang kebentuk kebiasaan.</p>
+          <h3 class="mt-4 font-semibold text-lg">Skor Naik, Kelihatan</h3>
+          <p class="mt-2 text-slate-600">Ada tracker sederhana biar progres kamu kebaca dan target mingguan tetap on track.</p>
+        </div>
+
+        <!-- Materi Nempel -->
+        <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 22a10 10 0 100-20 10 10 0 000 20"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-lg">Materi Cepat Nempel</h3>
+          <p class="mt-2 text-slate-600">Contoh real + latihan kecil-kecil bikin pola cepat kebentuk dan awet.</p>
+        </div>
+
+        <!-- Materi Update Berkala -->
+        <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v6h6"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 20v-6h-6"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 8a8 8 0 00-14-4"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16a8 8 0 0014 4"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-lg">Selalu Up-to-date</h3>
+          <p class="mt-2 text-slate-600">Konten rutin di-update ngikutin tren soal terbaru. Kamu nggak ketinggalan.</p>
+        </div>
+
+        <!-- Simulasi Mirip Asli -->
+        <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 2h6"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 2v3"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-lg">Simulasi Rasa Ujian</h3>
+          <p class="mt-2 text-slate-600">Latihan dengan tempo & tekanan yang mirip ujian beneran—biar pas hari H lebih santai.</p>
+        </div>
+
+        <!-- Mentor Siaga -->
+        <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 7h14v8a3 3 0 01-3 3H9l-4 3V7z"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-lg">Mentor Selalu Siap</h3>
+          <p class="mt-2 text-slate-600">Butuh arahan? Tinggal tanya. Dapat jawaban jelas biar nggak stuck lama-lama.</p>
         </div>
       </div>
     </div>
@@ -208,27 +266,76 @@
 
       <div class="mt-10 grid lg:grid-cols-3 gap-6 reveal">
         <div class="p-6 rounded-2xl border border-slate-200 bg-white">
-          <h3 class="font-semibold text-lg">Listening</h3>
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <!-- Book icon for Fundamentals -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 19a2 2 0 002 2h12M6 3h10a2 2 0 012 2v14M6 3a2 2 0 00-2 2v14"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Fundamental English for TOEFL</h3>
           <ul class="mt-3 space-y-2 text-slate-600 text-sm">
-            <li>• Pattern spotting yang sering muncul</li>
-            <li>• Cara tangkap keyword tanpa panik</li>
-            <li>• Time management biar nggak kejar-kejaran</li>
+            <li>• Grammar dasar yang sering muncul</li>
+            <li>• Pola kalimat & tenses inti</li>
+            <li>• Vocabulary yang beneran kepake</li>
           </ul>
         </div>
         <div class="p-6 rounded-2xl border border-slate-200 bg-white">
-          <h3 class="font-semibold text-lg">Structure & Written Expression</h3>
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <!-- Checklist/plan icon for Preparation -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h8M9 12h8M9 17h8"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 7h.01M5 12h.01M5 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">TOEFL Preparation</h3>
+          <ul class="mt-3 space-y-2 text-slate-600 text-sm">
+            <li>• Kenalan format tes & skoring</li>
+            <li>• Strategi pengerjaan per sesi</li>
+            <li>• Manajemen waktu biar aman</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <!-- Headphones icon for Listening -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 0116 0"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 12v5a3 3 0 01-3 3h-1M6 12v5a3 3 0 003 3h1"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Listening Focus</h3>
+          <ul class="mt-3 space-y-2 text-slate-600 text-sm">
+            <li>• Tangkap keyword tanpa panik</li>
+            <li>• Bedain detail vs inference cepat</li>
+            <li>• Hindari jebakan opsi mirip</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <!-- Puzzle/grammar icon for Structure -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 3h8v6H8zM3 15h6v6H3zM15 15h6v6h-6z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Structure Focus</h3>
           <ul class="mt-3 space-y-2 text-slate-600 text-sm">
             <li>• Rumus cepat grammar yang kepake</li>
-            <li>• Pola jebakan dan cara ngelesnya</li>
+            <li>• Pola jebakan & cara ngelesnya</li>
             <li>• Latihan targeted per topik</li>
           </ul>
         </div>
         <div class="p-6 rounded-2xl border border-slate-200 bg-white">
-          <h3 class="font-semibold text-lg">Reading</h3>
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <!-- Book-open/eye icon for Reading -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h7a4 4 0 014 4v8H7a4 4 0 00-4 4V6z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 6h-7a4 4 0 00-4 4v8h7a4 4 0 014 4V6z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Reading Focus</h3>
           <ul class="mt-3 space-y-2 text-slate-600 text-sm">
-            <li>• Skimming & scanning yang efektif</li>
-            <li>• Menebak makna tanpa buka kamus</li>
-            <li>• Eliminasi cepat opsi mirip</li>
+            <li>• Skimming & scanning efektif</li>
+            <li>• Menebak makna konteks cepat</li>
+            <li>• Eliminasi akurat opsi mirip</li>
           </ul>
         </div>
       </div>
@@ -258,41 +365,146 @@
           <div id="slider" class="flex transition-transform duration-700">
             <!-- Slide 1 -->
             <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
-              <div class="md:col-span-2">
-                <div class="h-48 rounded-xl bg-gradient-to-br from-brand/10 to-accent/10 border border-slate-200"></div>
-              </div>
-              <div class="md:col-span-3">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
                 <div class="flex items-center gap-2 text-amber-500">
                   <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +67 poin</span>
                 </div>
                 <p class="mt-3 text-slate-700">“Materinya to the point banget. Teknik eliminasi opsi ngebantu banget pas reading. Dulu suka panik, sekarang lebih santai tapi akurat.”</p>
-                <p class="mt-2 text-sm text-slate-500">Rani — Mahasiswa</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=160&auto=format&fit=crop" alt="Rani" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Rani</p>
+                    <p class="text-xs text-slate-500">Mahasiswa</p>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Slide 2 -->
             <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
-              <div class="md:col-span-2">
-                <div class="h-48 rounded-xl bg-gradient-to-br from-brand/10 to-accent/10 border border-slate-200"></div>
-              </div>
-              <div class="md:col-span-3">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
                 <div class="flex items-center gap-2 text-amber-500">
                   <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +51 poin</span>
                 </div>
                 <p class="mt-3 text-slate-700">“Pattern listening-nya berjasa banget. Jadi tau kapan harus fokus dan kapan bisa skip tanpa rasa bersalah.”</p>
-                <p class="mt-2 text-sm text-slate-500">Bagas — Fresh Graduate</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=160&auto=format&fit=crop" alt="Bagas" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Bagas</p>
+                    <p class="text-xs text-slate-500">Fresh Graduate</p>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Slide 3 -->
             <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
-              <div class="md:col-span-2">
-                <div class="h-48 rounded-xl bg-gradient-to-br from-brand/10 to-accent/10 border border-slate-200"></div>
-              </div>
-              <div class="md:col-span-3">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
                 <div class="flex items-center gap-2 text-amber-500">
                   <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +72 poin</span>
                 </div>
                 <p class="mt-3 text-slate-700">“Latihan micro-step bikin kebiasaan ke-build. Kerasa sendiri tiap minggu makin nambah.”</p>
-                <p class="mt-2 text-sm text-slate-500">Dina — Profesional</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1544005314-2c5647d17d88?q=80&w=160&auto=format&fit=crop" alt="Dina" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Dina</p>
+                    <p class="text-xs text-slate-500">Profesional</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
+                <div class="flex items-center gap-2 text-amber-500">
+                  <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +45 poin</span>
+                </div>
+                <p class="mt-3 text-slate-700">“Strategi manage waktu-nya ngebantu banget. Sekarang tiap bagian ada pace yang jelas.”</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=160&auto=format&fit=crop" alt="Andi" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Andi</p>
+                    <p class="text-xs text-slate-500">Karyawan</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
+                <div class="flex items-center gap-2 text-amber-500">
+                  <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +58 poin</span>
+                </div>
+                <p class="mt-3 text-slate-700">“Latihan micro-step bikin konsisten. Tiap hari sedikit, tapi hasilnya berasa.”</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=160&auto=format&fit=crop" alt="Sari" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Sari</p>
+                    <p class="text-xs text-slate-500">Mahasiswi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 6 -->
+            <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
+                <div class="flex items-center gap-2 text-amber-500">
+                  <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +49 poin</span>
+                </div>
+                <p class="mt-3 text-slate-700">“Teknik eliminasi opsi mirip ngurangin kebingungan pas reading.”</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=160&auto=format&fit=crop" alt="Yusuf" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Yusuf</p>
+                    <p class="text-xs text-slate-500">Fresh Graduate</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 7 -->
+            <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
+                <div class="flex items-center gap-2 text-amber-500">
+                  <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +61 poin</span>
+                </div>
+                <p class="mt-3 text-slate-700">“Materi ringkas tapi kena sasaran. Nggak kebanyakan teori.”</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1544005314-2c5647d17d88?q=80&w=160&auto=format&fit=crop" alt="Nadia" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Nadia</p>
+                    <p class="text-xs text-slate-500">Pekerja</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 8 -->
+            <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
+                <div class="flex items-center gap-2 text-amber-500">
+                  <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +40 poin</span>
+                </div>
+                <p class="mt-3 text-slate-700">“Listening pattern-nya bikin lebih fokus. Soal jebakan jadi gampang kebaca.”</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=160&auto=format&fit=crop" alt="Agus" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Agus</p>
+                    <p class="text-xs text-slate-500">Mahasiswa</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 9 -->
+            <div class="min-w-full p-8 grid md:grid-cols-5 gap-6 items-center">
+              <div class="md:col-span-5 max-w-2xl mx-auto">
+                <div class="flex items-center gap-2 text-amber-500">
+                  <span>★★★★★</span><span class="text-slate-500 text-sm">Skor +55 poin</span>
+                </div>
+                <p class="mt-3 text-slate-700">“Step-by-step guidance bikin ngerasa ditemenin. Target mingguan jadi kejar.”</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=160&auto=format&fit=crop" alt="Lia" class="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Lia</p>
+                    <p class="text-xs text-slate-500">Profesional</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -301,6 +513,12 @@
           <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 1"></button>
           <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 2"></button>
           <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 3"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 4"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 5"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 6"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 7"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 8"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300" aria-label="Slide 9"></button>
         </div>
       </div>
     </div>
@@ -315,42 +533,116 @@
       </div>
 
       <div class="mt-10 grid md:grid-cols-3 gap-6 reveal">
-        <!-- Basic -->
+        <!-- Fundamental English for TOEFL -->
         <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
-          <h3 class="font-semibold text-lg">Basic</h3>
-          <p class="mt-1 text-slate-500 text-sm">Belajar mandiri, lengkap.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp299K</div>
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 19a2 2 0 002 2h12M6 3h10a2 2 0 012 2v14M6 3a2 2 0 00-2 2v14"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Fundamental English for TOEFL</h3>
+          <p class="mt-1 text-slate-500 text-sm">Fondasi kuat biar gampang naik level.</p>
+          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Akses video materi lengkap</li>
-            <li>• Bank soal + pembahasan</li>
-            <li>• Grup komunitas</li>
+            <li>• Grammar & tenses inti</li>
+            <li>• Pola kalimat TOEFL</li>
+            <li>• Latihan dasar terarah</li>
           </ul>
-          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Pilih Basic</a>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Pilih Kelas</a>
         </div>
-        <!-- Pro -->
+
+        <!-- TOEFL Preparation -->
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h8M9 12h8M9 17h8"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 7h.01M5 12h.01M5 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">TOEFL Preparation</h3>
+          <p class="mt-1 text-slate-500 text-sm">Strategi lengkap biar siap tempur.</p>
+          <div class="mt-4 text-3xl font-extrabold">Rp79.000</div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• Format tes & skoring</li>
+            <li>• Taktik per sesi</li>
+            <li>• Manajemen waktu</li>
+          </ul>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Pilih Kelas</a>
+        </div>
+
+        <!-- Listening Focus -->
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 0116 0"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 12v5a3 3 0 01-3 3h-1M6 12v5a3 3 0 003 3h1"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Listening Focus</h3>
+          <p class="mt-1 text-slate-500 text-sm">Tangkap keyword, hindari jebakan.</p>
+          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• Keyword & intonasi</li>
+            <li>• Detail vs inference</li>
+            <li>• Eliminasi opsi mirip</li>
+          </ul>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Pilih Kelas</a>
+        </div>
+
+        <!-- Structure Focus -->
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 3h8v6H8zM3 15h6v6H3zM15 15h6v6h-6z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Structure Focus</h3>
+          <p class="mt-1 text-slate-500 text-sm">Rumus cepat grammar yang kepake.</p>
+          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• Pola error yang umum</li>
+            <li>• Tips cepat eliminasi</li>
+            <li>• Latihan per topik</li>
+          </ul>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Pilih Kelas</a>
+        </div>
+
+        <!-- Reading Focus -->
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h7a4 4 0 014 4v8H7a4 4 0 00-4 4V6z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 6h-7a4 4 0 00-4 4v8h7a4 4 0 014 4V6z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">Reading Focus</h3>
+          <p class="mt-1 text-slate-500 text-sm">Baca cepat, pilih jawaban mantap.</p>
+          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• Skimming & scanning</li>
+            <li>• Menebak makna konteks</li>
+            <li>• Eliminasi opsi mirip</li>
+          </ul>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Pilih Kelas</a>
+        </div>
+
+        <!-- TOEFL HACK Bundle (Rekomendasi) -->
         <div class="p-6 rounded-2xl border-2 border-brand bg-white shadow-soft flex flex-col relative">
           <span class="absolute -top-3 right-4 px-2 py-1 text-xs rounded-full bg-brand text-white">Rekomendasi</span>
-          <h3 class="font-semibold text-lg">Pro</h3>
-          <p class="mt-1 text-slate-500 text-sm">Mentoring + feedback.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp599K</div>
+          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.5 5.1L20 9l-4 3.9L17 19l-5-2.6L7 19l1-6.1L4 9l5.5-.9L12 3z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg">TOEFL HACK — Bundling</h3>
+          <p class="mt-1 text-slate-500 text-sm">Semua kelas di atas + BONUS kelas SKD ASN/CPNS.</p>
+          <div class="mt-4 text-3xl font-extrabold">Rp129.000</div>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Semua fitur Basic</li>
-            <li>• Mentoring mingguan</li>
-            <li>• Review jawaban prioritas</li>
+            <li>• 5 kelas lengkap (Fundamental, Prep, Listening, Structure, Reading)</li>
+            <li>• BONUS: Kelas SKD ASN/CPNS</li>
+            <li>• Update materi & komunitas</li>
           </ul>
-          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg bg-brand text-white text-center hover:bg-brand-dark">Pilih Pro</a>
-        </div>
-        <!-- Ultimate -->
-        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
-          <h3 class="font-semibold text-lg">Ultimate</h3>
-          <p class="mt-1 text-slate-500 text-sm">All-in termasuk simulasi.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp899K</div>
-          <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Semua fitur Pro</li>
-            <li>• Simulasi penuh bulanan</li>
-            <li>• 1-on-1 coaching</li>
-          </ul>
-          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Pilih Ultimate</a>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg bg-brand text-white text-center hover:bg-brand-dark">Pilih Bundling</a>
         </div>
       </div>
     </div>
@@ -385,6 +677,27 @@
             <svg class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="faq-content px-5 pb-4 hidden text-slate-600">Kami bantu pantau progress dan arahkan strategi. Kalau stuck, mentor siap bimbing sampai paham.</div>
+        </div>
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between">
+            <span class="font-medium">Kapan jadwal belajarnya?</span>
+            <svg class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-content px-5 pb-4 hidden text-slate-600">Materi bisa diakses kapan saja (on-demand). Untuk live/mentoring, jadwal diumumkan mingguan dan rekamannya tersedia.</div>
+        </div>
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between">
+            <span class="font-medium">Apakah ada sertifikat?</span>
+            <svg class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-content px-5 pb-4 hidden text-slate-600">Ada e-sertifikat penyelesaian program yang bisa kamu unduh setelah menyelesaikan modul inti.</div>
+        </div>
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between">
+            <span class="font-medium">Bagaimana kalau masih bingung setelah belajar?</span>
+            <svg class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-content px-5 pb-4 hidden text-slate-600">Kamu bisa tanya mentor lewat fitur tanya/jadwal mentoring. Pertanyaan akan dijawab dengan contoh dan langkah yang jelas.</div>
         </div>
       </div>
     </div>
@@ -427,6 +740,53 @@
     </div>
   </div>
 
+  <!-- Lead Modal -->
+  <div id="leadModal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+    <div class="relative max-w-md mx-auto mt-24 px-4">
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-soft overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+          <p class="font-semibold">Perkenalkan diri dulu ya, sebelum hubungi admin 😊</p>
+          <button id="leadClose" class="h-8 w-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100" aria-label="Tutup">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M6 18L18 6"/></svg>
+          </button>
+        </div>
+        <form id="leadForm" class="px-5 pt-4 pb-5 grid gap-3">
+          <div>
+            <label class="text-sm text-slate-600">Nama</label>
+            <input type="text" name="name" required placeholder="Nama lengkap" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Email aktif</label>
+            <input type="email" name="email" required placeholder="email@aktif.com" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Nomor WhatsApp</label>
+            <input type="tel" name="phone" required placeholder="08xxxxxxxxxx" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Asal Kota</label>
+            <input type="text" name="city" required placeholder="Contoh: Bandung" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Tujuan Belajar TOEFL</label>
+            <select name="purpose" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30">
+              <option value="">Pilih tujuan</option>
+              <option value="Daftar Beasiswa">Daftar Beasiswa</option>
+              <option value="Melamar Pekerjaan">Melamar Pekerjaan</option>
+              <option value="Sertifikasi">Sertifikasi</option>
+            </select>
+          </div>
+          <p id="leadError" class="hidden text-sm text-red-600"></p>
+          <button type="submit" id="leadSubmit" class="mt-2 rounded-xl bg-brand text-white px-4 py-2.5 font-medium flex items-center justify-center gap-2">
+            <span>Chat Admin Sekarang</span>
+          </button>
+          <p class="text-xs text-slate-500">Dengan menekan tombol ini, data kamu akan disimpan untuk keperluan follow-up dan layanan akademi.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -444,12 +804,43 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ
-    document.querySelectorAll('.faq-toggle').forEach(btn => {
+    // FAQ (accessible accordion + exclusive open + chevron rotate)
+    const faqItems = Array.from(document.querySelectorAll('#faq .border'));
+    faqItems.forEach((item) => {
+      const btn = item.querySelector('.faq-toggle');
+      const content = item.querySelector('.faq-content');
+      if (!btn || !content) return;
+      // Setup ARIA
+      if (!content.id) content.id = `faq-${Math.random().toString(36).slice(2, 8)}`;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', content.id);
+      content.setAttribute('role', 'region');
+      content.setAttribute('aria-hidden', 'true');
+      // Chevron transition
+      const icon = btn.querySelector('svg');
+      if (icon) icon.classList.add('transition-transform');
+      // Toggle handler
       btn.addEventListener('click', () => {
-        const content = btn.parentElement.querySelector('.faq-content');
+        // Close others
+        faqItems.forEach((other) => {
+          if (other === item) return;
+          const obtn = other.querySelector('.faq-toggle');
+          const oc = other.querySelector('.faq-content');
+          const oi = obtn?.querySelector('svg');
+          if (oc && !oc.classList.contains('hidden')) {
+            oc.classList.add('hidden');
+            oc.setAttribute('aria-hidden', 'true');
+          }
+          obtn?.classList.remove('bg-slate-50');
+          oi?.classList.remove('rotate-180');
+          obtn?.setAttribute('aria-expanded', 'false');
+        });
+        const willOpen = content.classList.contains('hidden');
         content.classList.toggle('hidden');
+        content.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
         btn.classList.toggle('bg-slate-50');
+        if (icon) icon.classList.toggle('rotate-180');
+        btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
       });
     });
 
@@ -527,6 +918,91 @@
       }
     });
     sliderContainer.addEventListener('touchend', () => { dragging = false; });
+
+    // Lead Modal + submission
+    const WA_NUMBER = '6285845670523'; // nomor admin tanpa tanda +
+    const leadModal = document.getElementById('leadModal');
+    const leadClose = document.getElementById('leadClose');
+    const leadForm = document.getElementById('leadForm');
+    const leadError = document.getElementById('leadError');
+    function openLeadModal(){ leadModal.classList.remove('hidden'); }
+    function closeLeadModal(){ leadModal.classList.add('hidden'); }
+    document.getElementById('tanyaDuluBtn')?.addEventListener('click', (e) => { e.preventDefault(); openLeadModal(); });
+    document.getElementById('tanyaDuluNav')?.addEventListener('click', (e) => { e.preventDefault(); openLeadModal(); });
+    document.getElementById('tanyaDuluBottom')?.addEventListener('click', (e) => { e.preventDefault(); openLeadModal(); });
+    leadClose?.addEventListener('click', closeLeadModal);
+    leadModal.addEventListener('click', (e) => { if (e.target === leadModal.firstElementChild) closeLeadModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLeadModal(); });
+
+    function normPhone(p){ return p.replace(/[^0-9]/g,'').replace(/^0/,'62'); }
+    function validEmail(v){ return /.+@.+\..+/.test(v); }
+    function validPhone(p){
+      if (!/^\d+$/.test(p)) return false;
+      if (!p.startsWith('62')) return false;
+      return p.length >= 10 && p.length <= 15;
+    }
+    function buildWaMessage(name, city, purpose){
+      const n = name || '';
+      const c = city || '';
+      const p = purpose || '';
+      return `Halo kak riana, saya ${n} dari ${c} saya ingin belajar TOEFL untuk ${p}, boleh minta info detail untuk kelas TOEFL HACK dong, apakah masih ada promo?`;
+    }
+
+    leadForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      leadError.classList.add('hidden');
+      const fd = new FormData(leadForm);
+      const name = (fd.get('name') || '').toString().trim();
+      const email = (fd.get('email') || '').toString().trim();
+      const phoneRaw = (fd.get('phone') || '').toString().trim();
+      const city = (fd.get('city') || '').toString().trim();
+      const purpose = (fd.get('purpose') || '').toString().trim();
+      const phone = normPhone(phoneRaw);
+      // Detailed validations
+      if (!name){
+        leadError.textContent = 'Nama wajib diisi.';
+        leadError.classList.remove('hidden');
+        leadForm.querySelector('input[name="name"]').focus();
+        return;
+      }
+      if (!validEmail(email)){
+        leadError.textContent = 'Email tidak valid. Gunakan format yang benar (mis. nama@domain.com).';
+        leadError.classList.remove('hidden');
+        leadForm.querySelector('input[name="email"]').focus();
+        return;
+      }
+      if (!validPhone(phone)){
+        leadError.textContent = 'Nomor WA tidak valid. Gunakan format 08xxxxxxxxxx (otomatis dinormalisasi ke 62...) atau 62xxxxxxxxxx, 10–15 digit.';
+        leadError.classList.remove('hidden');
+        leadForm.querySelector('input[name="phone"]').focus();
+        return;
+      }
+      if (!city){
+        leadError.textContent = 'Asal kota wajib diisi.';
+        leadError.classList.remove('hidden');
+        leadForm.querySelector('input[name="city"]').focus();
+        return;
+      }
+      if (!purpose){
+        leadError.textContent = 'Tujuan belajar TOEFL wajib dipilih.';
+        leadError.classList.remove('hidden');
+        leadForm.querySelector('select[name="purpose"]').focus();
+        return;
+      }
+      try {
+        const res = await fetch('/api/leads', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, email, phone, city, purpose }) });
+        if (!res.ok) throw new Error('Gagal simpan');
+        // Track as Contact (Pixel + CAPI)
+        track('Contact'); sendCAPI('Contact');
+        // Redirect to WhatsApp with prefilled message (custom template)
+        const msg = encodeURIComponent(buildWaMessage(name, city, purpose));
+        const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+        window.location.href = url;
+      } catch(err){
+        leadError.textContent = 'Maaf, ada kendala menyimpan data. Coba lagi ya.';
+        leadError.classList.remove('hidden');
+      }
+    });
   </script>
 </body>
 </html>

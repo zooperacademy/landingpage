@@ -1,0 +1,10 @@
+{
+  "name": "toefl-hack-landing",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TOEFL HACK by ZOOPER ACADEMY.",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/postgres": "^0.8.0"
+  }
+}
