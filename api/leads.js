@@ -39,6 +39,31 @@ module.exports = async (req, res) => {
 
     await sql`INSERT INTO leads (name, email, phone, city, purpose) VALUES (${name}, ${email}, ${phone}, ${city || null}, ${purpose || null});`;
 
+    // Forward to Mailketing (best-effort, non-blocking)
+    const mkUrl = process.env.MAILKETING_FORM_URL || process.env.MAILKETING_API_URL;
+    const mkKey = process.env.MAILKETING_API_KEY || '';
+    if (mkUrl) {
+      try {
+        const payload = new URLSearchParams();
+        payload.set('name', name);
+        payload.set('email', email);
+        payload.set('phone', phone);
+        if (city) payload.set('city', city);
+        if (purpose) payload.set('purpose', purpose);
+        // Optional: tags/list identifiers if provided via env
+        if (process.env.MAILKETING_LIST_ID) payload.set('list_id', process.env.MAILKETING_LIST_ID);
+        if (process.env.MAILKETING_TAGS) payload.set('tags', process.env.MAILKETING_TAGS);
+        const headers = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
+        if (mkKey) headers['Authorization'] = `Bearer ${mkKey}`;
+        // Fire-and-forget with timeout guard
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 4500);
+        fetch(mkUrl, { method: 'POST', headers, body: payload, signal: controller.signal })
+          .catch(() => {})
+          .finally(() => clearTimeout(timer));
+      } catch (_) {}
+    }
+
     return res.status(200).json({ ok: true });
   } catch (err) {
     return res.status(500).json({ error: 'DB error', details: err?.message || String(err) });

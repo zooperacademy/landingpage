@@ -1003,6 +1003,7 @@
     }
 
     // Meta Pixel CTA tracking + Conversions API client helper
+    const MAILKETING_FORM_URL = '';
     function getCookie(name){ return (`; ${document.cookie}`).split(`; ${name}=`).pop().split(';')[0] || null; }
     function getFbpFbc(){
       const fbp = getCookie('_fbp');
@@ -1137,17 +1138,46 @@
         return;
       }
       try {
-        const res = await fetch('/api/leads', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, email, phone, city, purpose }) });
-        if (!res.ok) throw new Error('Gagal simpan');
-        // Track as Contact (Pixel + CAPI)
+        // Prefer serverless proxy to keep keys secret and avoid CORS
+        let ok = true;
+        try {
+          const r = await fetch('/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, phone, city, purpose, source: window.location.href })
+          });
+          ok = r.ok;
+        } catch(_) {
+          ok = false;
+        }
+        // Optional direct Mailketing POST (only if explicitly configured)
+        if (!ok && MAILKETING_FORM_URL) {
+          try {
+            const payload = new URLSearchParams();
+            payload.set('name', name);
+            payload.set('email', email);
+            payload.set('phone', phone);
+            payload.set('city', city);
+            payload.set('purpose', purpose);
+            payload.set('source', window.location.href);
+            const r2 = await fetch(MAILKETING_FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: payload });
+            ok = r2.ok;
+          } catch(_) { ok = false; }
+        }
         track('Contact'); sendCAPI('Contact');
-        // Redirect to WhatsApp with prefilled message (custom template)
         const msg = encodeURIComponent(buildWaMessage(name, city, purpose));
         const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
         window.location.href = url;
+        if (!ok) {
+          setTimeout(() => {
+            leadError.textContent = 'Maaf, penyimpanan ke sistem tertunda, tapi chat sudah diarahkan.';
+            leadError.classList.remove('hidden');
+          }, 0);
+        }
       } catch(err){
-        leadError.textContent = 'Maaf, ada kendala menyimpan data. Coba lagi ya.';
-        leadError.classList.remove('hidden');
+        const msg = encodeURIComponent(buildWaMessage(name, city, purpose));
+        const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+        window.location.href = url;
       }
     });
   </script>
