@@ -1004,6 +1004,14 @@
 
     // Meta Pixel CTA tracking + Conversions API client helper
     const MAILKETING_FORM_URL = '';
+    const API_BASE_URL = 'https://toeflhack.vercel.app';
+    function apiUrl(path){
+      try {
+        const base = (API_BASE_URL || '').trim();
+        if (!base) return path; // same-origin
+        return base.replace(/\/$/, '') + path; // join without double slash
+      } catch(_) { return path; }
+    }
     function getCookie(name){ return (`; ${document.cookie}`).split(`; ${name}=`).pop().split(';')[0] || null; }
     function getFbpFbc(){
       const fbp = getCookie('_fbp');
@@ -1141,7 +1149,7 @@
         // Prefer serverless proxy to keep keys secret and avoid CORS
         let ok = true;
         try {
-          const r = await fetch('/api/leads', {
+          const r = await fetch(apiUrl('/api/leads'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, phone, city, purpose, source: window.location.href })
