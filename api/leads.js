@@ -47,6 +47,8 @@ module.exports = async (req, res) => {
     const mkUrl = process.env.MAILKETING_API_URL || 'https://api.mailketing.co.id/api/v1/addsubtolist';
     const mkToken = process.env.MAILKETING_API_TOKEN || '';
     const mkListId = process.env.MAILKETING_LIST_ID || '';
+    const debug = process.env.DEBUG_LEADS === '1';
+    let mkDebug = null;
     if (mkUrl && mkToken && mkListId) {
       try {
         const payload = new URLSearchParams();
@@ -65,16 +67,23 @@ module.exports = async (req, res) => {
         if (process.env.MAILKETING_COUNTRY) payload.set('country', process.env.MAILKETING_COUNTRY);
         if (process.env.MAILKETING_COMPANY) payload.set('company', process.env.MAILKETING_COMPANY);
         const headers = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
-        // Fire-and-forget with timeout guard
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 4500);
-        fetch(mkUrl, { method: 'POST', headers, body: payload, signal: controller.signal })
-          .catch(() => {})
-          .finally(() => clearTimeout(timer));
+        if (debug) {
+          // Await response for diagnostics
+          const r = await fetch(mkUrl, { method: 'POST', headers, body: payload });
+          const text = await r.text();
+          mkDebug = { status: r.status, ok: r.ok, body: text.slice(0, 400) };
+        } else {
+          // Fire-and-forget with timeout guard
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 4500);
+          fetch(mkUrl, { method: 'POST', headers, body: payload, signal: controller.signal })
+            .catch(() => {})
+            .finally(() => clearTimeout(timer));
+        }
       } catch (_) {}
     }
 
-    return res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true, mk: mkDebug ? mkDebug : undefined, mailketingConfigured: !!(mkUrl && mkToken && mkListId) });
   } catch (err) {
     // Do not block conversion: still respond 200 to allow frontend to proceed
     return res.status(200).json({ ok: true, warning: 'Non-critical error; lead forwarded to Mailketing if configured.' });
