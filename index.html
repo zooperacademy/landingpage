@@ -1068,13 +1068,29 @@
 
     // Meta Pixel CTA tracking + Conversions API client helper
     const MAILKETING_FORM_URL = '';
-    const API_BASE_URL = 'https://toeflhack.my.id';
-    function apiUrl(path){
+    const API_BASE_URL = ''; // same-origin to avoid CORS
+    const ALT1_API_BASE_URL = 'https://www.toeflhack.my.id';
+    const ALT2_API_BASE_URL = 'https://toeflhack.my.id';
+    function joinUrl(base, path){ return base.replace(/\/$/, '') + path; }
+    function apiUrl(path){ return path; }
+    async function postJSONWithFallback(path, body){
+      const headers = { 'Content-Type': 'application/json' };
+      // try same-origin
       try {
-        const base = (API_BASE_URL || '').trim();
-        if (!base) return path; // same-origin
-        return base.replace(/\/$/, '') + path; // join without double slash
-      } catch(_) { return path; }
+        const r0 = await fetch(path, { method: 'POST', headers, body: JSON.stringify(body) });
+        if (r0.ok) return { ok: true };
+      } catch(_) {}
+      // try www
+      try {
+        const r1 = await fetch(joinUrl(ALT1_API_BASE_URL, path), { method: 'POST', headers, body: JSON.stringify(body) });
+        if (r1.ok) return { ok: true };
+      } catch(_) {}
+      // try apex
+      try {
+        const r2 = await fetch(joinUrl(ALT2_API_BASE_URL, path), { method: 'POST', headers, body: JSON.stringify(body) });
+        if (r2.ok) return { ok: true };
+      } catch(_) {}
+      return { ok: false };
     }
     function getCookie(name){ return (`; ${document.cookie}`).split(`; ${name}=`).pop().split(';')[0] || null; }
     function getFbpFbc(){
@@ -1223,12 +1239,8 @@
         // Prefer serverless proxy to keep keys secret and avoid CORS
         let ok = true;
         try {
-          const r = await fetch(apiUrl('/api/leads'), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, phone, city, purpose, type: 'lead', source: window.location.href })
-          });
-          ok = r.ok;
+          const result = await postJSONWithFallback('/api/leads', { name, email, phone, city, purpose, type: 'lead', source: window.location.href });
+          ok = result.ok;
         } catch(_) {
           ok = false;
         }
@@ -1355,8 +1367,8 @@
           const r = await fetch(MAILKETING_FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: payload });
           ok = r.ok;
         } else {
-          const r2 = await fetch(apiUrl('/api/leads'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, phone, plan, gender, city, status, type: 'register', source: window.location.href }) });
-          ok = r2.ok;
+          const result2 = await postJSONWithFallback('/api/leads', { name, email, phone, plan, gender, city, status, type: 'register', source: window.location.href });
+          ok = result2.ok;
         }
       } catch(_) { ok = false; }
 
