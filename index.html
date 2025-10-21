@@ -1068,7 +1068,7 @@
 
     // Meta Pixel CTA tracking + Conversions API client helper
     const MAILKETING_FORM_URL = '';
-    const API_BASE_URL = 'https://toeflhack.vercel.app';
+    const API_BASE_URL = 'https://toeflhack.my.id';
     function apiUrl(path){
       try {
         const base = (API_BASE_URL || '').trim();
@@ -1226,7 +1226,7 @@
           const r = await fetch(apiUrl('/api/leads'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, phone, city, purpose, source: window.location.href })
+            body: JSON.stringify({ name, email, phone, city, purpose, type: 'lead', source: window.location.href })
           });
           ok = r.ok;
         } catch(_) {
