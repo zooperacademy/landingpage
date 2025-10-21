@@ -40,21 +40,27 @@ module.exports = async (req, res) => {
     await sql`INSERT INTO leads (name, email, phone, city, purpose) VALUES (${name}, ${email}, ${phone}, ${city || null}, ${purpose || null});`;
 
     // Forward to Mailketing (best-effort, non-blocking)
-    const mkUrl = process.env.MAILKETING_FORM_URL || process.env.MAILKETING_API_URL;
-    const mkKey = process.env.MAILKETING_API_KEY || '';
-    if (mkUrl) {
+    const mkUrl = process.env.MAILKETING_API_URL || 'https://api.mailketing.co.id/api/v1/addsubtolist';
+    const mkToken = process.env.MAILKETING_API_TOKEN || '';
+    const mkListId = process.env.MAILKETING_LIST_ID || '';
+    if (mkUrl && mkToken && mkListId) {
       try {
         const payload = new URLSearchParams();
-        payload.set('name', name);
+        // Map fields to Mailketing API spec
+        const [firstName, ...restName] = (name || '').split(' ');
+        const lastName = restName.join(' ').trim();
+        payload.set('api_token', mkToken);
+        payload.set('list_id', mkListId);
         payload.set('email', email);
-        payload.set('phone', phone);
+        if (firstName) payload.set('first_name', firstName);
+        if (lastName) payload.set('last_name', lastName);
+        if (phone) payload.set('mobile', phone);
         if (city) payload.set('city', city);
-        if (purpose) payload.set('purpose', purpose);
-        // Optional: tags/list identifiers if provided via env
-        if (process.env.MAILKETING_LIST_ID) payload.set('list_id', process.env.MAILKETING_LIST_ID);
-        if (process.env.MAILKETING_TAGS) payload.set('tags', process.env.MAILKETING_TAGS);
+        // Optional extras if provided via env
+        if (process.env.MAILKETING_STATE) payload.set('state', process.env.MAILKETING_STATE);
+        if (process.env.MAILKETING_COUNTRY) payload.set('country', process.env.MAILKETING_COUNTRY);
+        if (process.env.MAILKETING_COMPANY) payload.set('company', process.env.MAILKETING_COMPANY);
         const headers = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
-        if (mkKey) headers['Authorization'] = `Bearer ${mkKey}`;
         // Fire-and-forget with timeout guard
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 4500);
