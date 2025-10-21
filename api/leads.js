@@ -26,18 +26,22 @@ module.exports = async (req, res) => {
     const { name, email, phone, city, purpose } = req.body || {};
     if (!name || !phone || !email) return res.status(400).json({ error: 'Missing fields' });
 
-    // create table if not exists (lightweight guard)
-    await sql`CREATE TABLE IF NOT EXISTS leads (
-      id SERIAL PRIMARY KEY,
-      name TEXT NOT NULL,
-      email TEXT NOT NULL,
-      phone TEXT NOT NULL,
-      city TEXT,
-      purpose TEXT,
-      created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-    );`;
+    // DB ops are best-effort: do not block or fail API if DB is unavailable
+    try {
+      await sql`CREATE TABLE IF NOT EXISTS leads (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT NOT NULL,
+        city TEXT,
+        purpose TEXT,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );`;
 
-    await sql`INSERT INTO leads (name, email, phone, city, purpose) VALUES (${name}, ${email}, ${phone}, ${city || null}, ${purpose || null});`;
+      await sql`INSERT INTO leads (name, email, phone, city, purpose) VALUES (${name}, ${email}, ${phone}, ${city || null}, ${purpose || null});`;
+    } catch(dbErr) {
+      // swallow DB error to keep conversion flow
+    }
 
     // Forward to Mailketing (best-effort, non-blocking)
     const mkUrl = process.env.MAILKETING_API_URL || 'https://api.mailketing.co.id/api/v1/addsubtolist';
@@ -72,6 +76,7 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    return res.status(500).json({ error: 'DB error', details: err?.message || String(err) });
+    // Do not block conversion: still respond 200 to allow frontend to proceed
+    return res.status(200).json({ ok: true, warning: 'Non-critical error; lead forwarded to Mailketing if configured.' });
   }
 };
