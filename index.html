@@ -45,6 +45,13 @@
     .reveal.visible { opacity: 1; transform: none; }
     a:focus-visible, button:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(21,94,171,.35); border-radius: .625rem; }
     .mobile-cta-safe { padding-bottom: max(72px, env(safe-area-inset-bottom)); }
+    html { scroll-behavior: smooth; }
+    .hover-lift { transition: transform .35s ease, box-shadow .35s ease; }
+    .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(21,94,171,.15); }
+    .btn-shimmer { position: relative; overflow: hidden; }
+    .btn-shimmer::before { content: ""; position: absolute; top: 0; left: -150%; height: 100%; width: 150%; background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.28) 50%, transparent 100%); transform: skewX(-18deg); }
+    .btn-shimmer:hover::before { animation: sweep 900ms ease; }
+    @keyframes sweep { from { left: -150%; } to { left: 150%; } }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -82,7 +89,7 @@
         </nav>
         <div class="hidden md:flex items-center gap-3">
           <a href="#" id="tanyaDuluNav" aria-label="Chat Admin via WhatsApp" class="px-4 py-2 rounded-lg border border-slate-300 hover:border-brand/40 hover:text-brand transition">Chat Admin</a>
-          <a href="#harga" aria-label="Pergi ke bagian harga" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white shadow-soft transition">Daftar Sekarang</a>
+          <a href="#harga" aria-label="Pergi ke bagian harga" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white shadow-soft transition btn-shimmer">Dapatkan Diskon 50%</a>
         </div>
         <button id="menuBtn" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-slate-300 text-slate-700">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" /></svg>
@@ -96,7 +103,7 @@
         <a href="#testimoni" class="py-2">Testimoni</a>
         <a href="#harga" class="py-2">Harga</a>
         <a href="#faq" class="py-2">FAQ</a>
-        <a href="#harga" class="mt-2 px-4 py-2 rounded-lg bg-brand text-white text-center">Daftar Sekarang</a>
+        <a href="#harga" class="mt-2 px-4 py-2 rounded-lg bg-brand text-white text-center">Dapatkan Diskon 50%</a>
       </div>
     </div>
   </header>
@@ -115,8 +122,8 @@
           </h1>
           <p class="mt-4 text-slate-600 text-base md:text-lg">Lagi ngejar skor tapi rasanya jalan di tempat? Di <span class="font-semibold">TOEFL HACK</span> by <span class="font-semibold">ZOOPER ACADEMY</span>, kamu langsung fokus ke inti: pola soal yang sering keluar + trik eksekusi biar nggak kebuang waktu. Belajar singkat, hasil berasa.</p>
           <div class="mt-6 flex flex-col sm:flex-row gap-3">
-            <a href="#daftar" aria-label="Mulai belajar sekarang" class="px-5 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-medium shadow-soft text-center">Mulai Sekarang</a>
-            <a href="#kurikulum" aria-label="Lihat kurikulum" class="px-5 py-3 rounded-xl border border-slate-300 hover:border-brand/40 hover:text-brand text-slate-700 text-center">Lihat Isinya</a>
+            <a href="#daftar" aria-label="Mulai belajar sekarang" class="px-5 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-medium shadow-soft text-center btn-shimmer">Dapatkan Diskon 50%</a>
+            <a href="#kurikulum" aria-label="Lihat kurikulum" class="px-5 py-3 rounded-xl border border-slate-300 hover:border-brand/40 hover:text-brand text-slate-700 text-center">Lihat Kurikulum</a>
           </div>
           <div class="mt-6 flex items-center gap-4 md:gap-6 text-sm text-slate-500">
             <div class="flex items-center gap-2">
@@ -129,7 +136,7 @@
             </div>
           </div>
         </div>
-        <div class="relative reveal">
+        <div class="relative reveal" id="heroParallax">
           <div class="absolute -top-10 -left-6 md:-left-12 h-40 w-40 md:h-56 md:w-56 rounded-full bg-brand/10 blur-2xl"></div>
           <div class="relative bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
             <div class="p-4 border-b border-slate-100 flex items-center gap-2 text-slate-500 text-xs">
@@ -358,9 +365,9 @@
         <p class="mt-3 text-slate-600">Nggak muter-muter. Langsung ke materi yang paling ngaruh ke skor. Ada contoh real, latihan kecil konsisten, dan arahan jelas biar pede naik terus.</p>
       </div>
 
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal" data-stagger>
         <!-- Strategi Anti Ribet -->
-        <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white">
+        <div class="p-6 rounded-2xl border border-slate-200 hover:shadow-soft transition bg-white hover-lift">
           <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 7l6 5-6 5V7"/>
@@ -674,127 +681,94 @@
         <p class="mt-3 text-slate-600">Akses penuh + update rutin. Ambil sekarang selagi harga promo masih jalan.</p>
       </div>
 
-      <div class="mt-10 grid md:grid-cols-3 gap-6 reveal">
-        <!-- Fundamental English for TOEFL -->
-        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
+      
+
+      <div class="mt-10 grid md:grid-cols-3 gap-6 reveal" data-stagger>
+        <!-- TOEFL HABITUATION -->
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col relative hover:shadow-soft transition-shadow hover-lift reveal">
+          <div class="absolute -top-3 left-4 px-2 py-1 text-xs rounded-full bg-slate-100 text-slate-700 border border-slate-200">Mulai Cepat</div>
           <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 19a2 2 0 002 2h12M6 3h10a2 2 0 012 2v14M6 3a2 2 0 00-2 2v14"/>
             </svg>
           </div>
-          <h3 class="font-semibold text-2xl">Fundamental English for TOEFL</h3>
-          <p class="mt-1 text-slate-500 text-sm">Fondasi kuat biar gampang naik level.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
+          <h3 class="font-semibold text-2xl mt-1">TOEFL HABITUATION</h3>
+          <p class="mt-1 text-slate-500 text-sm">Bangun kebiasaan & fondasi grammar biar ngerjain soal jadi refleks.</p>
+          <div class="mt-4 flex items-baseline gap-3">
+            <span class="text-slate-400 line-through">Rp99.000</span>
+            <span class="text-3xl font-extrabold text-slate-900">Rp49.000</span>
+          </div>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Grammar & tenses inti</li>
-            <li>• Pola kalimat TOEFL</li>
-            <li>• Vocabulary esensial</li>
-            <li>• Latihan terarah harian</li>
-            <li>• Contoh real + pembahasan</li>
+            <li>• Grammar inti (tenses, parts of speech)</li>
+            <li>• Pola kalimat TOEFL (clause, modifier)</li>
+            <li>• Vocabulary high‑frequency TOEFL</li>
+            <li>• Micro‑drill 10–15 menit/hari + kunci</li>
           </ul>
-          <a href="https://zooperacademy.myr.id/course/eft" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Mulai dari Paket Ini</a>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand btn-shimmer">Pilih Habituation</a>
         </div>
 
-        <!-- TOEFL Preparation -->
-        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
+        <!-- TOEFL THERAPY -->
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col relative hover:shadow-soft transition-shadow hover-lift reveal">
+          <div class="absolute -top-3 left-4 px-2 py-1 text-xs rounded-full bg-accent text-white">Best Deal</div>
           <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h8M9 12h8M9 17h8"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 7h.01M5 12h.01M5 17h.01"/>
             </svg>
           </div>
-          <h3 class="font-semibold text-2xl">TOEFL Preparation</h3>
-          <p class="mt-1 text-slate-500 text-sm">Strategi lengkap biar siap tempur.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
-          <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Format tes & skoring</li>
-            <li>• Strategi per sesi</li>
-            <li>• Manajemen waktu</li>
-            <li>• Simulasi ringan terjadwal</li>
-            <li>• Checklist siap ujian</li>
-          </ul>
-          <a href="https://zooperacademy.myr.id/course/tp" aria-label="Mulai paket Fundamental" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Mulai dari Paket Ini</a>
-        </div>
-
-        <!-- Listening Focus -->
-        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
-          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 0116 0"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M18 12v5a3 3 0 01-3 3h-1M6 12v5a3 3 0 003 3h1"/>
-            </svg>
+          <h3 class="font-semibold text-2xl mt-1">TOEFL THERAPY</h3>
+          <p class="mt-1 text-slate-500 text-sm">Kombo fondasi + strategi eksekusi untuk lonjakan cepat.</p>
+          <div class="mt-4 flex items-baseline gap-3">
+            <span class="text-slate-400 line-through">Rp149.000</span>
+            <span class="text-3xl font-extrabold text-slate-900">Rp79.000</span>
           </div>
-          <h3 class="font-semibold text-2xl">Listening Focus</h3>
-          <p class="mt-1 text-slate-500 text-sm">Tangkap keyword, hindari jebakan.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Keyword & intonasi</li>
-            <li>• Detail vs inference cepat</li>
-            <li>• Hindari opsi mirip</li>
-            <li>• Latihan audio bertahap</li>
-            <li>• Tips fokus & catatan</li>
+            <li>• Review cepat grammar yang sering diuji</li>
+            <li>• Strategi per section (Listening/Structure/Reading)</li>
+            <li>• Manajemen waktu + teknik eliminasi opsi</li>
+            <li>• Template analisis kesalahan pribadi</li>
+            <li>• Latihan mingguan terstruktur (target + evaluasi)</li>
           </ul>
-          <a href="https://zooperacademy.myr.id/course/lf" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Mulai dari Paket Ini</a>
+          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand btn-shimmer">Pilih Therapy</a>
         </div>
 
-        <!-- Structure Focus -->
-        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
-          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 3h8v6H8zM3 15h6v6H3zM15 15h6v6h-6z"/>
-            </svg>
-          </div>
-          <h3 class="font-semibold text-2xl">Structure Focus</h3>
-          <p class="mt-1 text-slate-500 text-sm">Rumus cepat grammar yang kepake.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
-          <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Pola error yang umum</li>
-            <li>• Rumus cepat grammar</li>
-            <li>• Eliminasi opsi jebakan</li>
-            <li>• Latihan per topik</li>
-            <li>• Ringkasan rumus praktis</li>
-          </ul>
-          <a href="https://zooperacademy.myr.id/course/sf" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Mulai dari Paket Ini</a>
-        </div>
-
-        <!-- Reading Focus -->
-        <div class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col">
-          <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h7a4 4 0 014 4v8H7a4 4 0 00-4 4V6z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 6h-7a4 4 0 00-4 4v8h7a4 4 0 014 4V6z"/>
-            </svg>
-          </div>
-          <h3 class="font-semibold text-2xl">Reading Focus</h3>
-          <p class="mt-1 text-slate-500 text-sm">Baca cepat, pilih jawaban mantap.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp49.000</div>
-          <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• Skimming & scanning</li>
-            <li>• Menebak makna konteks</li>
-            <li>• Eliminasi opsi mirip</li>
-            <li>• Strategi waktu per paragraf</li>
-            <li>• Latihan comprehension</li>
-          </ul>
-          <a href="https://zooperacademy.myr.id/course/rf" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand">Mulai dari Paket Ini</a>
-        </div>
-
-        <!-- TOEFL HACK Bundle (Rekomendasi) -->
-        <div class="p-6 rounded-2xl border-2 border-brand bg-white shadow-soft flex flex-col relative">
+        <!-- TOEFL HACK (Rekomendasi) -->
+        <div class="p-6 rounded-2xl border-2 border-brand bg-white shadow-soft flex flex-col relative hover:shadow-xl transition-shadow hover-lift reveal">
           <span class="absolute -top-3 right-4 px-2 py-1 text-xs rounded-full bg-brand text-white">Rekomendasi</span>
           <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.5 5.1L20 9l-4 3.9L17 19l-5-2.6L7 19l1-6.1L4 9l5.5-.9L12 3z"/>
             </svg>
           </div>
-          <h3 class="font-semibold text-2xl">TOEFL HACK — Bundling</h3>
-          <p class="mt-1 text-slate-500 text-sm">Semua kelas di atas + BONUS kelas SKD ASN/CPNS.</p>
-          <div class="mt-4 text-3xl font-extrabold">Rp149.000</div>
+          <h3 class="font-semibold text-2xl mt-1">TOEFL HACK</h3>
+          <p class="mt-1 text-slate-500 text-sm">Paket lengkap + bonus untuk sprint ke skor target.</p>
+          <div class="mt-4 flex items-baseline gap-3">
+            <span class="text-slate-400 line-through">Rp199.000</span>
+            <span class="text-3xl font-extrabold text-slate-900">Rp99.000</span>
+          </div>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
-            <li>• 5 kelas lengkap (Fundamental, Prep, Listening, Structure, Reading)</li>
-            <li>• BONUS: Kelas SKD ASN/CPNS</li>
-            <li>• Update materi & komunitas</li>
+            <li>• Semua materi Habituation + Therapy</li>
+            <li>• Listening Focus: keyword, inference, intonasi</li>
+            <li>• Structure Focus: error spotting, agreement, modifiers</li>
+            <li>• Reading Focus: skimming, scanning, context clues</li>
+            <li>• Bank soal + pembahasan mirip tes asli</li>
+            <li>• Roadmap belajar 30 hari (harian/mingguan)</li>
+            <li>• Prioritas tanya mentor + update konten berkala</li>
+            <li>• BONUS Kelas SKD CPNS/ASN</li>
           </ul>
-          <a href="https://zooperacademy.myr.id/bundling/th" aria-label="Ambil paket bundling lengkap" class="mt-6 px-4 py-2 rounded-lg bg-brand text-white text-center hover:bg-brand-dark">Ambil Paket Lengkap</a>
+          <a href="#daftar" aria-label="Ambil paket TOEFL HACK" class="mt-6 px-4 py-2 rounded-lg bg-brand text-white text-center hover:bg-brand-dark btn-shimmer">Checkout Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Limited seats note -->
+      <div class="mt-6 reveal">
+        <div class="p-4 rounded-xl bg-brand/5 border border-brand/20 text-slate-700 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand/10 text-brand">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8"/></svg>
+            </span>
+            <p class="text-sm"><span class="font-semibold">Seat terbatas:</span> agar mentoring tetap efektif. Amankan tempatmu sekarang.</p>
+          </div>
+          <a href="#daftar" class="hidden sm:inline-flex px-3 py-2 rounded-lg bg-brand text-white text-sm hover:bg-brand-dark">Dapatkan Diskon 50%</a>
         </div>
       </div>
     </div>
@@ -848,8 +822,8 @@
         <h3 class="text-2xl md:text-3xl font-bold">Siap gas? Yuk mulai sekarang 🚀</h3>
         <p class="mt-2 text-slate-600">Pilih paket yang pas buat kamu, lalu ikuti alurnya. Pelan tapi pasti, skor kamu naik.</p>
         <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="#harga" aria-label="Lihat semua paket" class="px-5 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-medium shadow-soft">Daftar Sekarang</a>
-          <a href="#" id="tanyaDuluBtn" aria-label="Chat admin" class="px-5 py-3 rounded-xl border border-slate-300 hover:border-brand/40 hover:text-brand">Tanya Dulu</a>
+          <a href="#harga" aria-label="Lihat semua paket" class="px-5 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-medium shadow-soft">Dapatkan Diskon 50%</a>
+          <a href="#" id="tanyaDuluBtn" aria-label="Chat admin" class="px-5 py-3 rounded-xl border border-slate-300 hover:border-brand/40 hover:text-brand">Chat Admin</a>
         </div>
       </div>
     </div>
@@ -873,7 +847,7 @@
 
   <div class="fixed bottom-0 inset-x-0 md:hidden bg-white/95 backdrop-blur border-t border-slate-200 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
-      <a href="#harga" aria-label="Lihat semua paket" class="flex-1 px-4 py-3 rounded-xl bg-brand text-white text-center font-medium">Daftar Sekarang</a>
+      <a href="#harga" aria-label="Lihat semua paket" class="flex-1 px-4 py-3 rounded-xl bg-brand text-white text-center font-medium">Dapatkan Diskon 50%</a>
       <a href="#" id="tanyaDuluBottom" aria-label="Chat admin" class="px-4 py-3 rounded-xl border border-slate-300 text-slate-700">Chat</a>
     </div>
   </div>
@@ -881,7 +855,7 @@
   <!-- Lead Modal -->
   <div id="leadModal" class="fixed inset-0 z-[60] hidden">
     <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
-    <div class="relative max-w-md mx-auto mt-24 px-4">
+    <div class="relative max-w-md mx-auto px-4 min-h-screen flex items-center">
       <div class="rounded-2xl border border-slate-200 bg-white shadow-soft overflow-hidden">
         <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
           <p class="font-semibold">Perkenalkan diri dulu ya, sebelum hubungi admin 😊</p>
@@ -938,9 +912,21 @@
 
     // Reveal on scroll
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        el.classList.add('visible');
+        // Stagger children when container has data-stagger
+        if (el.hasAttribute('data-stagger')) {
+          const kids = Array.from(el.children);
+          kids.forEach((child, i) => {
+            child.classList.add('reveal');
+            setTimeout(() => child.classList.add('visible'), i * 120);
+          });
+        }
+      });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, [data-stagger]').forEach(el => observer.observe(el));
 
     // FAQ (accessible accordion + exclusive open + chevron rotate)
     const faqItems = Array.from(document.querySelectorAll('#faq .border'));
@@ -1058,6 +1044,16 @@
     const siteHeader = document.getElementById('siteHeader');
     function onScroll(){ if (window.scrollY > 2) { siteHeader.classList.add('shadow-lg'); } else { siteHeader.classList.remove('shadow-lg'); } }
     window.addEventListener('scroll', onScroll); onScroll();
+
+    // Lightweight parallax on hero preview
+    (function(){
+      const box = document.getElementById('heroParallax');
+      if (!box) return;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY * 0.04;
+        box.style.transform = `translateY(${y}px)`;
+      });
+    })();
 
     // Swipe support for testimonials
     let startX = 0; let dragging = false; let swiped = false;
