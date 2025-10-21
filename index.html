@@ -79,6 +79,84 @@
             <p class="text-xs tracking-widest text-slate-500">ZOOPER ACADEMY</p>
             <p class="font-semibold">TOEFL HACK</p>
           </div>
+
+  <!-- Register Modal -->
+  <div id="registerModal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+    <div class="relative max-w-xl mx-auto px-4 min-h-screen flex items-center">
+      <div class="w-full rounded-2xl border border-slate-200 bg-white shadow-soft overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+          <p class="font-semibold">Form Pendaftaran</p>
+          <button id="regClose" class="h-8 w-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100" aria-label="Tutup">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M6 18L18 6"/></svg>
+          </button>
+        </div>
+        <form id="registerForm" class="px-5 pt-4 pb-5 grid gap-3">
+          <div class="grid md:grid-cols-2 gap-3">
+            <div>
+              <label class="text-sm text-slate-600">Nama</label>
+              <input id="regName" type="text" name="name" required placeholder="Nama lengkap" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+            </div>
+            <div>
+              <label class="text-sm text-slate-600">Email</label>
+              <input id="regEmail" type="email" name="email" required placeholder="nama@domain.com" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-3">
+            <div>
+              <label class="text-sm text-slate-600">No WhatsApp</label>
+              <input id="regPhone" type="tel" name="phone" required placeholder="08xxxxxxxxxx / 62xxxxxxxxxx" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-3 gap-3">
+            <div>
+              <label class="text-sm text-slate-600">Jenis Kelamin</label>
+              <select id="regGender" name="gender" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30">
+                <option value="">Pilih</option>
+                <option value="Laki-laki">Laki - laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+            <div class="md:col-span-1">
+              <label class="text-sm text-slate-600">Asal Kota</label>
+              <input id="regCity" type="text" name="city" required placeholder="Nama kota" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+            </div>
+            <div>
+              <label class="text-sm text-slate-600">Status</label>
+              <select id="regStatus" name="status" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30">
+                <option value="">Pilih</option>
+                <option>Siswa</option>
+                <option>Mahasiswa</option>
+                <option>Karyawan</option>
+                <option>Pegawai</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="text-sm text-slate-600">Pilihan Kelas</label>
+            <select id="regPlan" name="plan" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand/30">
+              <option>TOEFL HABITUATION</option>
+              <option>TOEFL THERAPY</option>
+              <option>TOEFL HACK</option>
+            </select>
+          </div>
+          <div class="mt-2 p-4 rounded-xl border border-slate-200 bg-slate-50">
+            <p class="font-medium">Rincian Tagihan</p>
+            <div class="mt-2 text-sm text-slate-700 grid gap-1">
+              <div class="flex items-center justify-between"><span>Paket</span><span id="invPlan">-</span></div>
+              <div class="flex items-center justify-between"><span>Harga Normal</span><span id="invOriginal">-</span></div>
+              <div class="flex items-center justify-between"><span>Diskon</span><span id="invDiscount">50%</span></div>
+              <div class="flex items-center justify-between font-semibold"><span>Total Bayar</span><span id="invTotal">-</span></div>
+            </div>
+          </div>
+          <p id="regError" class="text-sm text-red-600 hidden">Error</p>
+          <button type="submit" class="mt-2 px-5 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-medium shadow-soft">Kirim Pendaftaran</button>
+          <p class="text-[12px] text-slate-500">Dengan mengirim formulir ini, Anda setuju untuk dihubungi admin via WhatsApp.</p>
+        </form>
+      </div>
+    </div>
+  </div>
         </a>
         <nav class="hidden md:flex items-center gap-8 text-sm">
           <a href="#benefits" class="hover:text-brand transition">Kenapa Kami</a>
@@ -704,7 +782,7 @@
             <li>• Vocabulary high‑frequency TOEFL</li>
             <li>• Micro‑drill 10–15 menit/hari + kunci</li>
           </ul>
-          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand btn-shimmer">Pilih Habituation</a>
+          <a href="#" data-plan="TOEFL HABITUATION" class="open-register mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand btn-shimmer">Pilih Habituation</a>
         </div>
 
         <!-- TOEFL THERAPY -->
@@ -728,7 +806,7 @@
             <li>• Template analisis kesalahan pribadi</li>
             <li>• Latihan mingguan terstruktur (target + evaluasi)</li>
           </ul>
-          <a href="#daftar" class="mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand btn-shimmer">Pilih Therapy</a>
+          <a href="#" data-plan="TOEFL THERAPY" class="open-register mt-6 px-4 py-2 rounded-lg border border-slate-300 text-center hover:border-brand/40 hover:text-brand btn-shimmer">Pilih Therapy</a>
         </div>
 
         <!-- TOEFL HACK (Rekomendasi) -->
@@ -755,7 +833,7 @@
             <li>• Prioritas tanya mentor + update konten berkala</li>
             <li>• BONUS Kelas SKD CPNS/ASN</li>
           </ul>
-          <a href="#daftar" aria-label="Ambil paket TOEFL HACK" class="mt-6 px-4 py-2 rounded-lg bg-brand text-white text-center hover:bg-brand-dark btn-shimmer">Checkout Sekarang</a>
+          <a href="#" data-plan="TOEFL HACK" aria-label="Ambil paket TOEFL HACK" class="open-register mt-6 px-4 py-2 rounded-lg bg-brand text-white text-center hover:bg-brand-dark btn-shimmer">Checkout Sekarang</a>
         </div>
       </div>
 
@@ -1182,6 +1260,116 @@
         const msg = encodeURIComponent(buildWaMessage(name, city, purpose));
         const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
         window.location.href = url;
+      }
+    });
+
+    // ===== Register Modal (Pendaftaran) =====
+    const registerModal = document.getElementById('registerModal');
+    const regClose = document.getElementById('regClose');
+    const registerForm = document.getElementById('registerForm');
+    const regError = document.getElementById('regError');
+    const regPlan = document.getElementById('regPlan');
+    const regName = document.getElementById('regName');
+    const regEmail = document.getElementById('regEmail');
+    const regPhone = document.getElementById('regPhone');
+    const regGender = document.getElementById('regGender');
+    const regCity = document.getElementById('regCity');
+    const regStatus = document.getElementById('regStatus');
+    const invPlan = document.getElementById('invPlan');
+    const invOriginal = document.getElementById('invOriginal');
+    const invDiscount = document.getElementById('invDiscount');
+    const invTotal = document.getElementById('invTotal');
+
+    const PRICE = {
+      'TOEFL HABITUATION': { original: 99000, promo: 49000 },
+      'TOEFL THERAPY': { original: 149000, promo: 79000 },
+      'TOEFL HACK': { original: 199000, promo: 99000 },
+    };
+
+    function openRegister(plan){
+      if (!registerModal) return;
+      if (plan && PRICE[plan]) regPlan.value = plan;
+      updateInvoice();
+      registerModal.classList.remove('hidden');
+    }
+    function closeRegister(){ registerModal?.classList.add('hidden'); }
+    function rp(n){ try { return 'Rp' + n.toLocaleString('id-ID'); } catch(_) { return 'Rp' + n; } }
+    function updateInvoice(){
+      const plan = regPlan.value;
+      const p = PRICE[plan] || PRICE['TOEFL HABITUATION'];
+      invPlan.textContent = plan;
+      invOriginal.textContent = rp(p.original);
+      invTotal.textContent = rp(p.promo);
+      invDiscount.textContent = '50%';
+    }
+
+    regPlan?.addEventListener('change', updateInvoice);
+    regClose?.addEventListener('click', closeRegister);
+    registerModal?.addEventListener('click', (e) => { if (e.target === registerModal.firstElementChild) closeRegister(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeRegister(); });
+
+    document.querySelectorAll('.open-register').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const plan = a.getAttribute('data-plan');
+        openRegister(plan);
+      });
+    });
+
+    function buildRegisterWa(name, plan){
+      const n = name || '';
+      const p = plan || regPlan.value;
+      return `Halo kak Riana, Saya ${n} ingin mendaftar kelas ${p}, dengan diskon 50%, saya telah mengisi form pendaftaran, mohon bantuanya untuk segera di proses`;
+    }
+
+    registerForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      regError.classList.add('hidden');
+      const name = regName.value.trim();
+      const email = regEmail.value.trim();
+      const phone = normPhone(regPhone.value.trim());
+      const plan = regPlan.value;
+      const gender = (regGender?.value || '').trim();
+      const city = (regCity?.value || '').trim();
+      const status = (regStatus?.value || '').trim();
+      if (!name){ regError.textContent = 'Nama wajib diisi.'; regError.classList.remove('hidden'); regName.focus(); return; }
+      if (!validEmail(email)){ regError.textContent = 'Email tidak valid.'; regError.classList.remove('hidden'); regEmail.focus(); return; }
+      if (!validPhone(phone)){ regError.textContent = 'Nomor WA tidak valid.'; regError.classList.remove('hidden'); regPhone.focus(); return; }
+      if (!gender){ regError.textContent = 'Jenis kelamin wajib dipilih.'; regError.classList.remove('hidden'); regGender.focus(); return; }
+      if (!city){ regError.textContent = 'Asal kota wajib diisi.'; regError.classList.remove('hidden'); regCity.focus(); return; }
+      if (!status){ regError.textContent = 'Status wajib dipilih.'; regError.classList.remove('hidden'); regStatus.focus(); return; }
+
+      // Optional: send to Mailketing if configured, else fallback to /api/leads
+      let ok = true;
+      try {
+        if (MAILKETING_FORM_URL) {
+          const payload = new URLSearchParams();
+          payload.set('name', name);
+          payload.set('email', email);
+          payload.set('phone', phone);
+          payload.set('plan', plan);
+          payload.set('gender', gender);
+          payload.set('city', city);
+          payload.set('status', status);
+          payload.set('source', window.location.href);
+          const r = await fetch(MAILKETING_FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: payload });
+          ok = r.ok;
+        } else {
+          const r2 = await fetch(apiUrl('/api/leads'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, phone, plan, gender, city, status, type: 'register', source: window.location.href }) });
+          ok = r2.ok;
+        }
+      } catch(_) { ok = false; }
+
+      // Redirect to WhatsApp
+      const msg = encodeURIComponent(buildRegisterWa(name, plan));
+      const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+      window.location.href = url;
+
+      if (!ok) {
+        setTimeout(() => {
+          regError.textContent = 'Pendaftaran terkirim, namun penyimpanan ke sistem tertunda.';
+          regError.classList.remove('hidden');
+        }, 0);
       }
     });
   </script>
