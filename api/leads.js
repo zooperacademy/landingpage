@@ -1,8 +1,6 @@
-// Save lead to Vercel Postgres
+// Save lead to Vercel Postgres (lazy-loaded to avoid module errors)
 // Requires Vercel Postgres integration with env set (DATABASE_URL / POSTGRES_URL)
-// npm dependency: @vercel/postgres (declared in package.json)
-
-const { sql } = require('@vercel/postgres');
+// npm dependency: @vercel/postgres (recommended). If not installed, DB ops will be skipped.
 
 module.exports = async (req, res) => {
   // CORS (allow same-site usage; adjust origin if needed)
@@ -14,10 +12,16 @@ module.exports = async (req, res) => {
     try {
       const url = new URL(req.url, `http://${req.headers.host}`);
       const limit = Math.max(1, Math.min(200, parseInt(url.searchParams.get('limit') || '50', 10)));
+      // lazy-load @vercel/postgres
+      let sql;
+      try {
+        ({ sql } = require('@vercel/postgres'));
+      } catch(_) { sql = null; }
+      if (!sql) return res.status(200).json({ ok: true, leads: [], warning: 'DB not configured' });
       const rows = await sql`SELECT id, name, email, phone, city, purpose, created_at FROM leads ORDER BY created_at DESC LIMIT ${limit};`;
       return res.status(200).json({ ok: true, leads: rows.rows });
     } catch (err) {
-      return res.status(500).json({ error: 'DB error', details: err?.message || String(err) });
+      return res.status(200).json({ ok: true, leads: [], warning: 'DB unavailable' });
     }
   }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
