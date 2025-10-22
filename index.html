@@ -1172,7 +1172,11 @@
     const leadClose = document.getElementById('leadClose');
     const leadForm = document.getElementById('leadForm');
     const leadError = document.getElementById('leadError');
-    function openLeadModal(){ leadModal.classList.remove('hidden'); }
+    function openLeadModal(){
+      leadModal.classList.remove('hidden');
+      // Track Lead on lead modal open (do NOT fire InitiateCheckout here)
+      try { track('Lead'); sendCAPI('Lead'); } catch(_){}
+    }
     function closeLeadModal(){ leadModal.classList.add('hidden'); }
     document.getElementById('tanyaDuluBtn')?.addEventListener('click', (e) => { e.preventDefault(); openLeadModal(); });
     document.getElementById('tanyaDuluNav')?.addEventListener('click', (e) => { e.preventDefault(); openLeadModal(); });
