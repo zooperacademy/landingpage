@@ -1079,19 +1079,24 @@
       // try same-origin
       try {
         const r0 = await fetch(path, { method: 'POST', headers, body: JSON.stringify(body) });
-        if (r0.ok) return { ok: true };
-      } catch(_) {}
-      // try www
+        return { ok: !!r0.ok };
+      } catch(_e) {
+        // only fallback on network error
+        try {
+          const r1 = await fetch(joinUrl(ALT1_API_BASE_URL, path), { method: 'POST', headers, body: JSON.stringify(body) });
+          return { ok: !!r1.ok };
+        } catch(_) {
+          try {
+            const r2 = await fetch(joinUrl(ALT2_API_BASE_URL, path), { method: 'POST', headers, body: JSON.stringify(body) });
+            return { ok: !!r2.ok };
+          } catch(_) { return { ok: false }; }
+        }
+      }
+    }
+    function sendJSONNonBlocking(path, body){
       try {
-        const r1 = await fetch(joinUrl(ALT1_API_BASE_URL, path), { method: 'POST', headers, body: JSON.stringify(body) });
-        if (r1.ok) return { ok: true };
+        fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), keepalive: true });
       } catch(_) {}
-      // try apex
-      try {
-        const r2 = await fetch(joinUrl(ALT2_API_BASE_URL, path), { method: 'POST', headers, body: JSON.stringify(body) });
-        if (r2.ok) return { ok: true };
-      } catch(_) {}
-      return { ok: false };
     }
     function getCookie(name){ return (`; ${document.cookie}`).split(`; ${name}=`).pop().split(';')[0] || null; }
     function getFbpFbc(){
@@ -1241,38 +1246,24 @@
         return;
       }
       try {
-        // Prefer serverless proxy to keep keys secret and avoid CORS
-        let ok = true;
-        try {
-          const result = await postJSONWithFallback('/api/leads', { name, email, phone, city, purpose, type: 'lead', source: window.location.href });
-          ok = result.ok;
-        } catch(_) {
-          ok = false;
-        }
-        // Optional direct Mailketing POST (only if explicitly configured)
-        if (!ok && MAILKETING_FORM_URL) {
-          try {
-            const payload = new URLSearchParams();
-            payload.set('name', name);
-            payload.set('email', email);
-            payload.set('phone', phone);
-            payload.set('city', city);
-            payload.set('purpose', purpose);
-            payload.set('source', window.location.href);
-            const r2 = await fetch(MAILKETING_FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: payload });
-            ok = r2.ok;
-          } catch(_) { ok = false; }
+        // Fire-and-forget to backend (non-blocking)
+        sendJSONNonBlocking('/api/leads', { name, email, phone, city, purpose, type: 'lead', source: window.location.href });
+        // Optional direct Mailketing POST (non-blocking)
+        if (MAILKETING_FORM_URL) {
+          const payload = new URLSearchParams();
+          payload.set('name', name);
+          payload.set('email', email);
+          payload.set('phone', phone);
+          payload.set('city', city);
+          payload.set('purpose', purpose);
+          payload.set('source', window.location.href);
+          try { fetch(MAILKETING_FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: payload, keepalive: true }); } catch(_){}
         }
         track('Contact'); sendCAPI('Contact');
+        // Redirect immediately to WhatsApp
         const msg = encodeURIComponent(buildWaMessage(name, city, purpose));
         const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
         window.location.href = url;
-        if (!ok) {
-          setTimeout(() => {
-            leadError.textContent = 'Maaf, penyimpanan ke sistem tertunda, tapi chat sudah diarahkan.';
-            leadError.classList.remove('hidden');
-          }, 0);
-        }
       } catch(err){
         const msg = encodeURIComponent(buildWaMessage(name, city, purpose));
         const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
@@ -1402,8 +1393,7 @@
         });
       } catch(_){}
 
-      // Optional: send to Mailketing if configured, else fallback to /api/leads
-      let ok = true;
+      // Fire-and-forget to backend (non-blocking)
       try {
         if (MAILKETING_FORM_URL) {
           const payload = new URLSearchParams();
@@ -1415,25 +1405,17 @@
           payload.set('city', city);
           payload.set('status', status);
           payload.set('source', window.location.href);
-          const r = await fetch(MAILKETING_FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: payload });
-          ok = r.ok;
+          fetch(MAILKETING_FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: payload, keepalive: true });
         } else {
-          const result2 = await postJSONWithFallback('/api/leads', { name, email, phone, plan, gender, city, status, type: 'register', source: window.location.href });
-          ok = result2.ok;
+          sendJSONNonBlocking('/api/leads', { name, email, phone, plan, gender, city, status, type: 'register', source: window.location.href });
         }
-      } catch(_) { ok = false; }
+      } catch(_) {}
 
-      // Redirect to WhatsApp
+      // Redirect to WhatsApp immediately
       const msg = encodeURIComponent(buildRegisterWa(name, plan));
       const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
       window.location.href = url;
-
-      if (!ok) {
-        setTimeout(() => {
-          regError.textContent = 'Pendaftaran terkirim, namun penyimpanan ke sistem tertunda.';
-          regError.classList.remove('hidden');
-        }, 0);
-      }
+      // Note: any backend failure will not block redirect; CAPI/Mailketing run in background
     });
   </script>
 </body>
