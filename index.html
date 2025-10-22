@@ -1307,6 +1307,23 @@
       registerModal.classList.remove('hidden');
       // Prevent sticky CTA covering modal on mobile
       mobileSticky?.classList.add('hidden');
+      // Track InitiateCheckout on modal open (Pixel + CAPI)
+      try {
+        const p = PRICE[regPlan.value]?.promo || 0;
+        const eventId = 'ic_' + uuid();
+        track('InitiateCheckout', {
+          content_name: regPlan.value,
+          value: p,
+          currency: 'IDR',
+          eventID: eventId
+        });
+        sendCAPI('InitiateCheckout', {
+          event_id: eventId,
+          content_name: regPlan.value,
+          value: p,
+          currency: 'IDR'
+        });
+      } catch(_){}
     }
     function closeRegister(){
       registerModal?.classList.add('hidden');
