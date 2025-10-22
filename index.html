@@ -1359,6 +1359,28 @@
       if (!city){ regError.textContent = 'Asal kota wajib diisi.'; regError.classList.remove('hidden'); regCity.focus(); return; }
       if (!status){ regError.textContent = 'Status wajib dipilih.'; regError.classList.remove('hidden'); regStatus.focus(); return; }
 
+      // Fire Meta Pixel + CAPI with AddToCart using the same event_id for deduplication
+      const price = (PRICE[plan]?.promo) || 0;
+      const eventId = 'atc_' + uuid();
+      try {
+        // Pixel
+        track('AddToCart', {
+          content_name: plan,
+          value: price,
+          currency: 'IDR',
+          eventID: eventId
+        });
+      } catch(_){}
+      try {
+        // CAPI
+        sendCAPI('AddToCart', {
+          event_id: eventId,
+          content_name: plan,
+          value: price,
+          currency: 'IDR'
+        });
+      } catch(_){}
+
       // Optional: send to Mailketing if configured, else fallback to /api/leads
       let ok = true;
       try {
